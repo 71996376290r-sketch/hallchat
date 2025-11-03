@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Painel Atendentes - NA CHAPA HALL</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <div id="sessions">
+    <h3>Sessões</h3>
+    <div id="sessions-list"></div>
+  </div>
+  <div id="chat">
+    <h3 id="chat-title">Selecione uma sessão</h3>
+    <div id="messages"></div>
+    <div id="input-area">
+      <input id="msg-input" placeholder="Mensagem..." style="flex:1;padding:8px" />
+      <button id="send-btn">Enviar</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/admin.js"></script>
+</body>
+</html>
