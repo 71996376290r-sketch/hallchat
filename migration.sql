@@ -16,4 +16,15 @@ CREATE TABLE IF NOT EXISTS messages (
   seen_by_attendant BOOLEAN DEFAULT false
 );
 
+
+ 
+        CREATE TABLE IF NOT EXISTS produtos (
+            id SERIAL PRIMARY KEY,
+            nome TEXT NOT NULL,
+            descricao TEXT,
+            preco NUMERIC(10,2) NOT NULL,
+            categoria TEXT DEFAULT 'Outros',
+            imagem TEXT
+        );
+
 CREATE INDEX IF NOT EXISTS idx_messages_session ON messages(session_id);
