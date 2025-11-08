@@ -17,8 +17,44 @@ CREATE TABLE IF NOT EXISTS messages (
 );
 
 
- 
-        DROP TABLE IF EXISTS pedido_itens, pedidos, clientes, produtos CASCADE;
-        );
+ CREATE TABLE IF NOT EXISTS clientes (
+    id SERIAL PRIMARY KEY,
+    cpf VARCHAR(14) UNIQUE NOT NULL,
+    nome TEXT NOT NULL,
+    telefone TEXT,
+    endereco TEXT
+);
+    
+CREATE TABLE IF NOT EXISTS produtos (
+    id SERIAL PRIMARY KEY,
+    nome TEXT NOT NULL,
+    descricao TEXT,
+    preco NUMERIC(10,2) NOT NULL,
+    categoria TEXT DEFAULT 'Outros',
+    imagem TEXT
+);
+
+CREATE TABLE IF NOT EXISTS pedido_itens (
+    id SERIAL PRIMARY KEY,
+    pedido_id INTEGER REFERENCES pedidos(id) ON DELETE CASCADE,
+    produto_id INTEGER REFERENCES produtos(id),
+    quantidade INTEGER,
+    preco_unit NUMERIC(10,2)
+);
+
+CREATE TABLE IF NOT EXISTS pedidos (
+    id SERIAL PRIMARY KEY,
+    cliente_id INTEGER REFERENCES clientes(id) ON DELETE CASCADE,
+    total NUMERIC(10,2),
+    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO produtos (nome, descricao, preco, categoria, imagem) VALUES
+('X-Burger', 'Pão, carne, queijo e maionese da casa', 18.00, 'Lanches', 'img/xburger.jpg'),
+('X-Salada', 'Pão, carne, queijo, alface, tomate e maionese', 20.00, 'Lanches', 'img/xsalada.jpg'),
+('Coca-Cola Lata', '350ml bem gelada', 6.00, 'Bebidas', 'img/coca.jpg'),
+('Batata Frita', 'Porção média crocante', 12.00, 'Acompanhamentos', 'img/batata.jpg'),
+('Brownie', 'Chocolate com calda', 10.00, 'Sobremesas', 'img/brownie.jpg');
+
 
 CREATE INDEX IF NOT EXISTS idx_messages_session ON messages(session_id);
