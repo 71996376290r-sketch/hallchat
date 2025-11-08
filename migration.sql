@@ -18,13 +18,7 @@ CREATE TABLE IF NOT EXISTS messages (
 
 
  
-        CREATE TABLE IF NOT EXISTS produtos (
-            id SERIAL PRIMARY KEY,
-            nome TEXT NOT NULL,
-            descricao TEXT,
-            preco NUMERIC(10,2) NOT NULL,
-            categoria TEXT DEFAULT 'Outros',
-            imagem TEXT
+        DROP TABLE IF EXISTS pedido_itens, pedidos, clientes, produtos CASCADE;
         );
 
 CREATE INDEX IF NOT EXISTS idx_messages_session ON messages(session_id);
